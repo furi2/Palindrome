@@ -19,7 +19,6 @@ namespace JwNetSurvey
         {
             Palindrome = new PalindromeEvaluator(dataReader);
             Consonants = new ConsonantsEvaluator(dataReader);
-            // Register
             Evaluators.Add(Palindrome);
             Evaluators.Add(Consonants);
         } 

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace JwNetSurvey
 {
     public class PalindromeEvaluator : StringEvaluator
     {
-        StringBuilder _buffer = new StringBuilder();
+        static readonly Regex _regex = new Regex("[^a-zA-Z0-9]");
 
         public PalindromeEvaluator(IDataReader dataReader)
             : base(dataReader)
@@ -18,8 +19,9 @@ namespace JwNetSurvey
         override public bool Evaluate(string expr)
         {
             if (String.IsNullOrEmpty(expr)) { return false; }
-            expr = expr.ToLower();
-            expr = EliminateExtraChars(expr);
+            
+            expr = expr.ToLower();            
+            expr = _regex.Replace(expr, "");
 
             for (int i = 0, j = expr.Length - 1; i <= j; i++, j--)
             {
@@ -31,17 +33,6 @@ namespace JwNetSurvey
             return true;
         }
 
-        string EliminateExtraChars(string expr)
-        {
-            _buffer.Clear();
-            foreach (var c in expr.ToCharArray())
-            {
-                if (Char.IsLetterOrDigit(c))
-                {
-                    _buffer.Append(c);
-                }
-            }
-            return _buffer.ToString();
-        }
+        
     }
 }

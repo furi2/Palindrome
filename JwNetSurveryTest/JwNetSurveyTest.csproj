@@ -67,6 +67,7 @@
   <ItemGroup>
     <Content Include="data\consonants.txt" />
     <Content Include="data\palindrome.txt" />
+    <Content Include="data\UKACD17.TXT" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
